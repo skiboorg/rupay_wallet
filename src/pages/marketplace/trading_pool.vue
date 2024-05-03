@@ -53,19 +53,20 @@ const poolAction = async (action) => {
           <q-tab-panels v-model="activeTab" animated
                         class="full-height">
             <q-tab-panel  name="main" class=" ">
-              <p class="no-margin text-weight-medium">Баланс основной USDT</p>
-              <p>{{parseFloat(p2pStore.p2pUser?.balance_main)}}</p>
-              <p class="no-margin text-weight-medium">Баланс потенциальный USDT</p>
-              <p>{{parseFloat(p2pStore.p2pUser?.balance_potential)}}</p>
-              <p class="no-margin text-weight-medium">Баланс для вывода или реинвеста USDT</p>
-              <p>{{parseFloat(p2pStore.p2pUser?.balance_withdrawal)}}</p>
+              <p class="q-mb-sm text-weight-medium">Баланс основной {{parseFloat(p2pStore.p2pUser?.balance_main)}} USDT</p>
+              <p class="q-mb-sm text-weight-medium text-grey-8">Замороженый баланс {{parseFloat(p2pStore.p2pUser?.balance_freeze)}} USDT | Дата разморозки {{new Date(p2pStore.p2pUser.balance_unfreeze).toLocaleDateString()}}</p>
+
+              <p class="q-mb-sm text-weight-medium">Баланс потенциальный {{parseFloat(p2pStore.p2pUser?.balance_potential)}} USDT</p>
+
+              <p class="q-mb-sm text-weight-medium">Баланс для вывода или реинвеста {{parseFloat(p2pStore.p2pUser?.balance_withdrawal)}} USDT</p>
+
               <Input v-model="amount" type="number" label="Введите сумму вывода или реинвестирования"/>
               <div class="row q-col-gutter-md">
                 <div class="col-6">
-                  <Button disabled color="negative" label="Вывести"/>
+                  <Button disabled color="negative" class="full-width" label="Вывести"/>
                 </div>
                 <div class="col-6">
-                  <Button :disabled="!amount" :loading="loading" color="positive" @click="poolAction('reinvest')" label="Реинвест"/>
+                  <Button :disabled="!amount" class="full-width" :loading="loading" color="positive" @click="poolAction('reinvest')" label="Реинвест"/>
                 </div>
               </div>
 
