@@ -54,10 +54,19 @@ const poolAction = async (action) => {
                         class="full-height">
             <q-tab-panel  name="main" class=" ">
               <p class="q-mb-sm text-weight-medium">Баланс основной {{parseFloat(p2pStore.p2pUser?.balance_main)}} USDT</p>
+              <div class="row q-col-gutter-md">
+                <div class="col-6">
+                  <Button disabled color="negative" class="full-width" label="Вывести"/>
+                </div>
+                <div class="col-6">
+                  <Button disabled class="full-width" :loading="loading" color="positive" label="Пополнить"/>
+                </div>
+              </div>
+              <q-separator spaced="lg"/>
               <p class="q-mb-sm text-weight-medium text-grey-8">Замороженый баланс {{parseFloat(p2pStore.p2pUser?.balance_freeze)}} USDT | Дата разморозки {{new Date(p2pStore.p2pUser.balance_unfreeze).toLocaleDateString()}}</p>
-
+              <q-separator spaced="lg"/>
               <p class="q-mb-sm text-weight-medium">Баланс потенциальный {{parseFloat(p2pStore.p2pUser?.balance_potential)}} USDT</p>
-
+              <q-separator spaced="lg"/>
               <p class="q-mb-sm text-weight-medium">Баланс для вывода или реинвеста {{parseFloat(p2pStore.p2pUser?.balance_withdrawal)}} USDT</p>
 
               <Input v-model="amount" type="number" label="Введите сумму вывода или реинвестирования"/>
